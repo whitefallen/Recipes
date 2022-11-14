@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="default">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div layout:fragment="content">
+      <h1>Recipes</h1>
+      <ul>
+        <li th:each="recipe : ${recipes}">
+            <a th:href="@{/recipes/{id}(id=${recipe.id})}" th:text="${recipe.name}"></a>
+        </li>
+      </ul>
+      <a th:href="@{/recipes/add}"><button class="btn btn-lg btn-primary btn-block" type="button">New Recipe</button></a>
+  </div>
+</body>
+</html>

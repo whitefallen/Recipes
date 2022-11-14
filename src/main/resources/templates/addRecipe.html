@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="default">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <form class="form-add-recipe" th:action="@{/recipes/add}" method="post">
+      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
+      <h1 class="h3 mb-3 font-weight-normal">Create Recipe</h1>
+      <div th:if="${param.error}">
+        Invalid Form.
+      </div>
+      <label for="inputName" class="sr-only">Name</label>
+      <input type="text" name="name" id="inputName" class="form-control" placeholder="Name" required="" />
+      <label for="inputDescription" class="sr-only">Description</label>
+      <input type="text" name="description" id="inputDescription" class="form-control" placeholder="Description" required="" />
+      <label for="inputIngredients" class="sr-only">Ingredients</label>
+      <input type="text" name="ingredients" id="inputIngredients" class="form-control" placeholder="Ingredients" required="" />
+      <label for="inputInstructions" class="sr-only">Instructions</label>
+      <input type="text" name="instructions" id="inputInstructions" class="form-control" placeholder="Instructions" required="" />
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Add Recipe</button>
+    </form>
+    <a th:href="@{/recipes}"><button class="btn btn-lg btn-primary btn-block" type="button">Zurück</button></a>
+  </div>
+</body>
+</html>

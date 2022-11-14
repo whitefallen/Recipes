@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="default">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1 th:text="${recipe.name}">Recipe</h1>
+        <p th:text="${recipe.description}">Description</p>
+        <p th:text="${recipe.ingredients}">Ingredients</p>
+        <p th:text="${recipe.instructions}">Instructions</p>
+        <p th:text="${recipe.user.getFullName}">User</p>
+    </div>
+</body>
+</html>
