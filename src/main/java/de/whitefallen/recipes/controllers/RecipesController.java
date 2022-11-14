@@ -1,11 +1,13 @@
 package de.whitefallen.recipes.controllers;
 
+import de.whitefallen.recipes.domain.Ingredient;
 import de.whitefallen.recipes.domain.Recipe;
 import de.whitefallen.recipes.domain.User;
 import de.whitefallen.recipes.repositories.RecipeRepository;
 import de.whitefallen.recipes.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators;
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -43,18 +45,21 @@ public class RecipesController {
     public ModelAndView addRecipe() {
         ModelAndView modelAndView = new ModelAndView();
         Recipe recipe = new Recipe();
+        Ingredient ingredient = new Ingredient();
         modelAndView.addObject("recipe", recipe);
+        modelAndView.addObject("ingredient", ingredient);
         modelAndView.setViewName("addRecipe");
         return modelAndView;
     }
 
     @PostMapping("/recipes/add")
-    public ModelAndView createRecipe(Recipe recipe, BindingResult bindingResult) {
+    public ModelAndView createRecipe(Recipe recipe, Ingredient ingredient, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUsername(auth.getName());
         if(recipe != null) {
             recipe.setUser(user);
+            recipe.setIngredients(ingredient);
             recipeRepository.save(recipe);
             modelAndView.addObject("successMessage", "Recipe has been added successfully");
             modelAndView.addObject("recipe", new Recipe());

@@ -13,7 +13,7 @@ public class Recipe {
     @Indexed(unique = false, direction = IndexDirection.DESCENDING, dropDups = true)
     private String name;
     private String description;
-    private String ingredients;
+    private Ingredient ingredients;
     private String instructions;
     @DBRef
     private User user;
@@ -42,11 +42,11 @@ public class Recipe {
         this.description = description;
     }
 
-    public String getIngredients() {
+    public Ingredient getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(String ingredients) {
+    public void setIngredients(Ingredient ingredients) {
         this.ingredients = ingredients;
     }
 
